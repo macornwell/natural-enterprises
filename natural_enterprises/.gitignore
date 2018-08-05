@@ -46,3 +46,8 @@ spritesmith.scss
 
 # templated email
 tmp_email/
+
+
+# Other
+package-lock.json
+*.lock
