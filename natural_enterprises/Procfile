@@ -1,0 +1,2 @@
+web: gunicorn natural_enterprises.wsgi --limit-request-line 8188 --log-file -
+worker: celery worker --app=natural_enterprises --loglevel=info
