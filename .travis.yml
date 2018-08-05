@@ -21,7 +21,7 @@ matrix:
         - sudo apt-get install git-lfs --upgrade
         - pip install requests pipenv --upgrade
         - pipenv install --dev
-      after_success:
+      script:
         - pipenv run prospector
         - pipenv run bandit -r .
         - pipenv check
