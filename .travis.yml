@@ -6,28 +6,28 @@ matrix:
           - "8"
           - "6"
       script:
-    	- cd ./natural_enterprises
-   		- npm run build
-    	- npm run lint
-    	- npm run test
+        - cd ./natural_enterprises
+        - npm run build
+        - npm run lint
+        - npm run test
 
 
     - language: python
       python: 3.6
       install:
-    	- cd ./natural_enterprises
-    	- curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
-    	- sudo apt-get install git-lfs --upgrade
-    	- pip install requests pipenv --upgrade
-    	- pipenv install --dev
+        - cd ./natural_enterprises
+        - curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+        - sudo apt-get install git-lfs --upgrade
+        - pip install requests pipenv --upgrade
+        - pipenv install --dev
         - pip install -r python/requirements.txt
         - pip install coveralls
       after_success:
-    	- pipenv run prospector
-    	- pipenv run bandit -r .
-    	- pipenv check
-    	- pipenv run isort **/*.py --check-only
-    	- SKIP=prospector,isort,eslint,missing-migrations pipenv run pre-commit run --all-files
+        - pipenv run prospector
+        - pipenv run bandit -r .
+        - pipenv check
+        - pipenv run isort **/*.py --check-only
+        - SKIP=prospector,isort,eslint,missing-migrations pipenv run pre-commit run --all-files
         - DJANGO_SETTINGS_MODULE=natural_enterprises.settings.local_base
         - pipenv run python manage.py has_missing_migrations --ignore authtools;
         - DJANGO_SETTINGS_MODULE=natural_enterprises.settings.production
@@ -38,5 +38,5 @@ matrix:
         - SENDGRID_PASSWORD='test'
         - REDIS_URL='redis://'
         - pipenv run python manage.py check --deploy
-    	- pipenv run coverage run manage.py test
+        - pipenv run coverage run manage.py test
 
