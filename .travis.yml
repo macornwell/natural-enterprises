@@ -41,3 +41,5 @@ matrix:
         - pipenv run python manage.py check --deploy
         - pipenv run coverage run manage.py test
 
+notifications:
+    email: false
