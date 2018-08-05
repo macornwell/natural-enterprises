@@ -23,14 +23,10 @@ matrix:
         - pip install -r python/requirements.txt
         - pip install coveralls
       after_success:
-    	# style check
     	- pipenv run prospector
-    	# security checks
     	- pipenv run bandit -r .
     	- pipenv check
-    	# imports check
     	- pipenv run isort **/*.py --check-only
-    	# pre-commit additional checks
     	- SKIP=prospector,isort,eslint,missing-migrations pipenv run pre-commit run --all-files
     	- >-
       	DJANGO_SETTINGS_MODULE=natural_enterprises.settings.local_base
