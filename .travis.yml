@@ -21,8 +21,6 @@ matrix:
         - sudo apt-get install git-lfs --upgrade
         - pip install requests pipenv --upgrade
         - pipenv install --dev
-        - pip install -r python/requirements.txt
-        - pip install coveralls
       after_success:
         - pipenv run prospector
         - pipenv run bandit -r .
